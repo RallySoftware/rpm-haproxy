@@ -6,7 +6,7 @@
 # wget http://www.haproxy.org/download/1.5/src/haproxy-1.5.11.tar.gz -O ~/rpmbuild/SOURCES/haproxy-1.5.11.tar.gz
 # rpmbuild -bb ~/rpmbuild/SPECS/haproxy.spec
 
-%define version 1.5.11
+%define version 1.5.14
 %{!?release: %{!?release: %define release 1}}
 
 Summary: HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
@@ -44,7 +44,7 @@ risking the system's stability.
 %define __perl_requires /bin/true
 
 %build
-%{__make} USE_PCRE=1 DEBUG="" ARCH=%{_target_cpu} TARGET=linux26 USE_OPENSSL=1
+%{__make} USE_ZLIB=yes USE_PCRE=1 DEBUG="" ARCH=%{_target_cpu} TARGET=linux26 USE_OPENSSL=1
 
 %install
 [ "%{buildroot}" != "/" ] && %{__rm} -rf %{buildroot}
