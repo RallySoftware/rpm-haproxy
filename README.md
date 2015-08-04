@@ -21,6 +21,7 @@ wget https://raw.github.com/RallySoftware/rpm-haproxy/master/haproxy.spec -O ~/r
 * Get the latest verison of haproxy
 ```
 wget http://www.haproxy.org/download/1.5/src/haproxy-1.5.14.tar.gz -O ~/rpmbuild/SOURCES/haproxy-1.5.14.tar.gz
+```
 
 * BUILD!
 ```
