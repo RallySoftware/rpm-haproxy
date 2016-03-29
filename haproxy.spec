@@ -6,7 +6,7 @@
 # wget http://www.haproxy.org/download/1.5/src/haproxy-1.5.11.tar.gz -O ~/rpmbuild/SOURCES/haproxy-1.5.11.tar.gz
 # rpmbuild -bb ~/rpmbuild/SPECS/haproxy.spec
 
-%define version 1.5.14
+%define version 1.6.4
 %{!?release: %{!?release: %define release 1}}
 
 Summary: HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
@@ -52,7 +52,6 @@ risking the system's stability.
 %{__install} -d %{buildroot}%{_sbindir}
 %{__install} -d %{buildroot}%{_sysconfdir}/rc.d/init.d
 %{__install} -d %{buildroot}%{_sysconfdir}/%{name}
-%{__install} -d %{buildroot}%{_mandir}/man1/
 %{__install} -d %{buildroot}%{_sharedstatedir}/haproxy
 
 mkdir -p %{buildroot}/etc/haproxy/errors
@@ -60,9 +59,7 @@ mkdir -p %{buildroot}/usr/share/haproxy
 cp examples/errorfiles/503.http %{buildroot}/etc/haproxy/errors/503.http
 
 %{__install} -s %{name} %{buildroot}%{_sbindir}/
-%{__install} -c -m 644 examples/%{name}.cfg %{buildroot}%{_sysconfdir}/%{name}/%{name}.cfg.example
 %{__install} -c -m 755 examples/%{name}.init %{buildroot}%{_sysconfdir}/rc.d/init.d/%{name}
-%{__install} -c -m 755 doc/%{name}.1 %{buildroot}%{_mandir}/man1/
 
 %clean
 [ "%{buildroot}" != "/" ] && %{__rm} -rf %{buildroot}
@@ -89,18 +86,16 @@ fi
 /usr/share/haproxy
 /etc/haproxy/errors/503.http
 
-%defattr(-,root,root)
-%doc CHANGELOG examples/*.cfg doc/haproxy-en.txt doc/haproxy-fr.txt doc/architecture.txt doc/configuration.txt
-%doc %{_mandir}/man1/%{name}.1*
-
 %attr(0755,root,root) %{_sbindir}/%{name}
 %dir %{_sysconfdir}/%{name}
-%attr(0644,root,root) %{_sysconfdir}/%{name}/%{name}.cfg.example
 %attr(0755,root,root) %config %{_sysconfdir}/rc.d/init.d/%{name}
 
 %attr(0755,haproxy,haproxy) %{_sharedstatedir}/haproxy
 
 %changelog
+* Thu Mar 17 2016 John Skarbek <john.skarbek@ca.com>
+- updated rally's haproxy to 1.6.4
+
 * Wed Apr 08 2015 David Wooldridge <zombie@zombix.org>
 - updated to 1.5.11
 
