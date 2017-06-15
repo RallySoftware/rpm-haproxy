@@ -3,10 +3,10 @@
 # sudo yum -y install rpmdevtools && rpmdev-setuptree
 # sudo yum -y install pcre-devel gcc make
 # wget https://raw.github.com/nmilford/rpm-haproxy/master/haproxy.spec -O ~/rpmbuild/SPECS/haproxy.spec
-# wget http://www.haproxy.org/download/1.7/src/haproxy-1.7.5.tar.gz -O ~/rpmbuild/SOURCES/haproxy-1.7.5.tar.gz
+# wget http://www.haproxy.org/download/1.6/src/haproxy-1.6.12.tar.gz -O ~/rpmbuild/SOURCES/haproxy-1.6.12.tar.gz
 # rpmbuild -bb ~/rpmbuild/SPECS/haproxy.spec
 
-%define version 1.7.5
+%define version 1.6.12
 %{!?release: %{!?release: %define release 1}}
 
 Summary: HA-Proxy is a TCP/HTTP reverse proxy for high availability environments
@@ -16,7 +16,7 @@ Release: %{release}%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://haproxy.1wt.eu/
-Source0: http://www.haproxy.org/download/1.7/src/%{name}-%{version}.tar.gz
+Source0: http://www.haproxy.org/download/1.6/src/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: pcre-devel make gcc openssl-devel
 Requires: /sbin/chkconfig, /sbin/service
@@ -94,7 +94,7 @@ fi
 
 %changelog
 * Thu Apr 13 2017 Ali Yahya <ali.yahya@ca.com>
-- updated rally's haproxy to 1.7.5
+- updated rally's haproxy to 1.6.12
 
 * Thu Mar 17 2016 John Skarbek <john.skarbek@ca.com>
 - updated rally's haproxy to 1.6.4
